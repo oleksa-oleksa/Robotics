@@ -19,3 +19,13 @@ class Vector(object):
 
     def __eq__(self, v):
         return self.coordinates == v.coordinates
+
+    def plus(v1, v2):
+        try:
+            if not len(v1) == len(v2):
+                raise ValueError
+            return [v1[i] + v2[i] for i in range(len(v1))]
+
+                
+        except ValueError:
+            raise ValueError('Vectors must have the same lenght')
