@@ -1,0 +1,65 @@
+Basic ROS commands from tutorial:
+
+================================================
+Navigation:
+$ rospack find [package_name]
+$ roscd [locationname[/subdir]]
+$ pwd
+$ rosls [locationname[/subdir]]
+
+================================================
+Packages:
+$ rospack depends1 beginner_tutorials 
+
+build:
+$ cd ~/catkin_ws/
+$ catkin_make
+
+================================================
+ROS Nodes:
+$ rosnode list
+
+rosrun allows you to use the package name to directly run a node within a package (without having to know the package path).
+$ rosrun [package_name] [node_name]
+
+reasign node name:
+$ rosrun [package_name] [node_name] __name:=[new_name]
+
+
+================================================
+ROS Topic:
+graphical representation:
+$ rosrun rqt_graph rqt_graph
+$ rosrun rqt_plot rqt_plot
+
+$ rostopic -h
+
+shows the data published on a topic:
+$ rostopic echo /turtle1/command_velocity
+ 
+$ rostopic list -v
+
+Type (geometry_msgs/Twist):
+$ rostopic type /turtle1/cmd_vel
+
+We can look at the details:
+$ rosmsg show geometry_msgs/Twist
+
+publish into the topic:
+$ rostopic pub -1 /turtle1/cmd_vel geometry_msgs/Twist -- '[2.0, 0.0, 0.0]' '[0.0, 0.0, 1.8]'
+
+================================================
+ROS Services
+rosservice list
+rosservice type /spawn | rossrv show
+
+
+$ rosservice call /spawn 2 2 0.2 ""
+
+$ rosparam list
+
+Here will change the red channel of the background color:
+$ rosparam set /background_r 150
+
+This changes the parameter value, now we have to call the clear service for the parameter change to take effect:
+$ rosservice call /clear
